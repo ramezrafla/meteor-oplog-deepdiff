@@ -19,5 +19,7 @@ Npm.depends({
 
 Package.onUse(function (api) {
   api.use(['mongo@1.1.18','ecmascript'], 'server');
-  api.addFiles('index.js', 'server');
+  api.use(['ddp-client@1.3.4','ecmascript','mongo-id'], 'client');
+  api.addFiles('server.js', 'server');
+  api.addFiles('client.js', 'client');
 });
