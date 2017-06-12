@@ -2,7 +2,7 @@
 
 ## Warning
 
-This package needs a hack to `ddp-client/livedata-connection.js` to export a variable. See https://github.com/ramezrafla/meteor-oplog-deepdiff/issues/1
+This package needs a hack to `ddp-client/livedata-connection.js` to expose an internal variable. See last commetn in https://github.com/ramezrafla/meteor-oplog-deepdiff/issues/1
 
 ## Description
 
