@@ -1,5 +1,7 @@
 # meteor-oplog-deepdiff
 
+## Not fully-tested yet, will change this README when we push to production ##
+
 ## Description
 
 This package reduces the bandwidth consumed by Mongo cursor updates following https://github.com/meteor/meteor-feature-requests/issues/67#issuecomment-307708759
