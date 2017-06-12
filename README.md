@@ -32,7 +32,10 @@ Then `meteor add ramez:oplog-deepdiff`
 
 This package only works on `changed` callbacks, `added` and `removed` remain as-is.
 
-Take a look at the code, it's super simple. It overrides the `_changePublished` method for `OplogObserveDriver` to use the excellent deep diff library https://github.com/flitbit/diff, then builds mongo-style queries to send down. 
+Take a look at the code, it's super simple. 
+**Server-side**: It overrides the `_changePublished` method in `mongo/oplog-observer-driver.js` to use the excellent deep diff library https://github.com/flitbit/diff, then builds mongo-style queries to send down. 
+**Client-side**: It overrides `_process_changed` method in `ddp-client/livedata-connection.js` to unflatten fields client-side
+
 As these queries are pure mongo, there is no need for client-side changes
 
 ## Issues
