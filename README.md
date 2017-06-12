@@ -8,6 +8,18 @@ This package reduces the bandwidth consumed by Mongo cursor updates following ht
 
 Mongo Oplog uses the Meteor built-in DiffSequence which only diffs top-level fields (i.e. if second-level fields change, the whole top-level is sent).
 
+## Example
+
+In our app, we changed the language which is a second-level field in the user doc
+
+|Scenario|WS frame size|
+|--------|-------|
+|Normal oplog|1.7kB|
+|With this package|120B|
+
+In other words, each time the user profile changes, we are sending down almost 2kB vs 100B
+
+
 ## Usage
 
 For not, clone this package into your packages/ folder, we'll add it to Atmosphere shortly
