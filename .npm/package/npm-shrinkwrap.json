@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "deep-diff": {
+      "version": "0.3.8",
+      "resolved": "https://registry.npmjs.org/deep-diff/-/deep-diff-0.3.8.tgz",
+      "from": "deep-diff@0.3.8"
+    }
+  }
+}
