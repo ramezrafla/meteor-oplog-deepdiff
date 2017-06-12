@@ -1,18 +1,34 @@
 # meteor-oplog-deepdiff
 
+## Not fully-tested yet, will change this README when we push to production ##
+
 ## Description
 
 This package reduces the bandwidth consumed by Mongo cursor updates following https://github.com/meteor/meteor-feature-requests/issues/67#issuecomment-307708759
 
 Mongo Oplog uses the Meteor built-in DiffSequence which only diffs top-level fields (i.e. if second-level fields change, the whole top-level is sent).
 
+## Example
+
+In our app, we changed the language which is a second-level field in the user doc
+
+|Scenario|WS frame size|
+|--------|-------|
+|Normal oplog|1.7kB|
+|With this package|120B|
+
+In other words, each time the user profile changes, we are sending down almost 2kB vs 100B
+
+
 ## Usage
 
-For not, clone this package into your packages/ folder, we'll add it to Atmosphere shortly
+For now, clone this package into your packages/ folder, we'll add it to Atmosphere shortly
 
 Then `meteor add ramez:oplog-deepdiff`
 
 ## How does it work
+
+This package only works on `changed` callbacks, `added` and `removed` remain as-is.
 
 Take a look at the code, it's super simple. It overrides the `_changePublished` method for `OplogObserveDriver` to use the excellent deep diff library https://github.com/flitbit/diff, then builds mongo-style queries to send down. 
 As these queries are pure mongo, there is no need for client-side changes
