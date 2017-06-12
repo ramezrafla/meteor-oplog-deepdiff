@@ -1,6 +1,8 @@
 # meteor-oplog-deepdiff
 
-## Not fully-tested yet, will change this README when we push to production ##
+## Warning
+
+This package needs a hack to `ddp-client/livedata-connection.js` to export a variable. See https://github.com/ramezrafla/meteor-oplog-deepdiff/issues/1
 
 ## Description
 
