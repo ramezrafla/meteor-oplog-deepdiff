@@ -22,7 +22,7 @@ In other words, each time the user profile changes, we are sending down almost 2
 
 ## Usage
 
-For not, clone this package into your packages/ folder, we'll add it to Atmosphere shortly
+For now, clone this package into your packages/ folder, we'll add it to Atmosphere shortly
 
 Then `meteor add ramez:oplog-deepdiff`
 
