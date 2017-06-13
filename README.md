@@ -2,7 +2,7 @@
 
 ## Warning
 
-This package needs a few hacks to some core methods as functions are not properly exposed to be overriden. Please look at the folder `hacked-core`. Once we finish testing we'll reach out to the Meteor team on how to handle all this.
+This package needs a few hacks to some core methods as functions are not properly exposed to be overriden. Please look at the folder `hacked-core` (search for `oplog-deepdiff changes` to see what we changed). Once we finish testing we'll reach out to the Meteor team on how to handle all this.
 
 ## Description
 
