@@ -24,9 +24,11 @@ In other words, each time the user profile changes, we are sending down almost 2
 
 ## Usage
 
-For now, clone this package into your packages/ folder, we'll add it to Atmosphere shortly
+For now, clone this package into your packages/ folder, we'll add it to Atmosphere if / when possible
 
 Then `meteor add ramez:oplog-deepdiff`
+
+Then you need to copy over three folders from Meteor core into your packages folder and copy over the files in `hacked-core`
 
 ## How it works
 
