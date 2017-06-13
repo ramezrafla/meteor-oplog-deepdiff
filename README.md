@@ -2,7 +2,7 @@
 
 ## Warning
 
-This package needs a hack to `ddp-client/livedata-connection.js` to expose an internal variable. See last commetn in https://github.com/ramezrafla/meteor-oplog-deepdiff/issues/1
+This package needs a few hacks to some core methods as functions are not properly exposed to be overriden. Please look at the folder `hacked-core`. Once we finish testing we'll reach out to the Meteor team on how to handle all this.
 
 ## Description
 
@@ -28,17 +28,12 @@ For now, clone this package into your packages/ folder, we'll add it to Atmosphe
 
 Then `meteor add ramez:oplog-deepdiff`
 
-## How does it work
+## How it works
 
 This package only works on `changed` callbacks, `added` and `removed` remain as-is.
 
-Take a look at the code, it's super simple. 
-
-**Server-side**: It overrides the `_changePublished` method in `mongo/oplog-observer-driver.js` to use the excellent deep diff library https://github.com/flitbit/diff, then builds mongo-style queries to send down. 
-
-**Client-side**: It overrides `_process_changed` method in `ddp-client/livedata-connection.js` to unflatten fields client-side
-
-As these queries are pure mongo, there is no need for client-side changes
+Instead of sending down the whole top-level element, we send down the fields themseves in dot notation like this:
+`{"content.meta.active": true}`. This required changes to core as we the merging methods would simply merge top-level fields. I am sure we missed a few spots where we have to do proper merging, but this work for our app. If you find another place we missed, please raise an issue.
 
 ## Issues
 
