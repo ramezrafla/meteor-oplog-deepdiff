@@ -24,7 +24,7 @@ DDP.Connection.prototype._process_changed = function (msg, updates) {
         else if (doc[key] == undefined) doc[key] = {};
         doc = doc[key];
       })
-      if (value === undefined)
+      if (value === null)
         delete doc[lastKey];
       else
         doc[lastKey] = value;
