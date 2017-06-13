@@ -18,8 +18,9 @@ Npm.depends({
 });
 
 Package.onUse(function (api) {
-  api.use(['mongo@1.1.18','ecmascript'], 'server');
+  api.use(['diff-sequence','mongo-id','ecmascript']);
+  api.use(['mongo'], 'server');
   api.addFiles('server.js', 'server');
-  api.use(['ddp-client@1.3.4','ecmascript','mongo-id'], 'client');
   api.addFiles('client.js', 'client');
+  api.addFiles('common.js');
 });

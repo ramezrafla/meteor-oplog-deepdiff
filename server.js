@@ -17,7 +17,7 @@ MongoInternals.OplogObserveDriver.prototype._changePublished = function (id, old
         else changed[field] = part.rhs;
       });
       if (!_.isEmpty(changed)) {
-        console.log(changed);
+        // console.log(changed);
         self._multiplexer.changed(id, changed);
       }
     }
