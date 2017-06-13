@@ -4,7 +4,9 @@ MongoInternals.OplogObserveDriver.prototype._changePublished = function (id, old
   var self = this;
   Meteor._noYieldsAllowed(function () {
     self._published.set(id, self._sharedProjectionFn(newDoc));
-    var diff = deepDiff(oldDoc,newDoc);
+    var projectedNew = self._projectionFn(newDoc);
+    var projectedOld = self._projectionFn(oldDoc);
+    var diff = deepDiff(projectedOld,projectedNew);
     if (diff) {
       var changed  = {}
       _.each(diff,function(part) {
@@ -13,6 +15,7 @@ MongoInternals.OplogObserveDriver.prototype._changePublished = function (id, old
         // note: if there is no part.item.rhs it means item was deleted
         else if (part.kind == 'A') changed[field + '.' + part.index] = part.item.rhs;
         else changed[field] = part.rhs;
+        // console.log(part,changed);
       });
       if (!_.isEmpty(changed)) {
         // console.log(changed);

@@ -16,7 +16,12 @@ DDP.Connection.prototype._process_changed = function (msg, updates) {
       // we traverse the object
       _.each(keys, function(key) {
         // array indices
-        if (!isNaN(Number(key))) key = parseInt(key);
+        if (!isNaN(Number(key))) {
+          key = parseInt(key);
+          // might as well fix missing field
+          if (doc[key] === undefined) doc[key] = []
+        }
+        else if (doc[key] == undefined) doc[key] = {};
         doc = doc[key];
       })
       if (value === undefined)
