@@ -171,7 +171,7 @@ Mongo.Collection = function (name, options) {
             var modifier = {};
             // -- beging of oplog-deepdiff changes
             _.each(msg.fields, function (value, key) {
-              if (value === null) {
+              if (value == null) {
                 if (!modifier.$unset)
                   modifier.$unset = {};
                 modifier.$unset[key] = 1;

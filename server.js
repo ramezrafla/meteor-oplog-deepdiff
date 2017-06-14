@@ -11,13 +11,15 @@ MongoInternals.OplogObserveDriver.prototype._changePublished = function (id, old
       var changed  = {}
       _.each(diff,function(part) {
         var field = part.path.join(".");
-        if (part.kind == 'D') changed[field] = null;
-        // note: if there is no part.item.rhs it means item was deleted
-        else if (part.kind == 'A') changed[field + '.' + part.index] = part.item.rhs || null;
+        if (part.kind == 'D') changed[field] = undefined;
+        else if (part.kind == 'A') {
+          if (part.item.kind == 'D') changed[field + '.' + part.index] = undefined;
+          else changed[field + '.' + part.index] = part.item.rhs;
+        }
         else changed[field] = part.rhs;
       });
       if (!_.isEmpty(changed)) {
-        // console.log(changed);
+        console.log(changed);
         self._multiplexer.changed(id, changed);
       }
     }
